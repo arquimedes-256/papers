@@ -1,0 +1,14 @@
+To recompile this file, run:
+
+pdflatex mathgen-58389232
+bibtex mathgen-58389232
+pdflatex mathgen-58389232
+pdflatex mathgen-58389232
+
+You need the following packages installed:
+
+AMS-LaTeX
+fullpage
+mathrsfs
+natbib
+truncate
