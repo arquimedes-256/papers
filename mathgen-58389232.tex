@@ -26,12 +26,12 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem{exercise}[theorem]{Exercise}
-
+\newtheorem{step}[theorem]{Step}
 \begin{document}
 
 
 \begin{abstract}
-I present a unconditional probabilistic log-time function that determines abelian terms from single input element using abstract structure as search context.
+I present a unconditional probabilistic operator that determines abelian terms from single input element using abstract structure as search context.
 \end{abstract}
 
 
@@ -56,53 +56,131 @@ I present a unconditional probabilistic log-time function that determines abelia
 ...
 
 
-\section{Main Result}
+\section{Principle}
 
+\iffalse
+Introduzir permutação de operador
+utilizar algebra de lie
+\fi
 
 \begin{definition}
- Let $\varphi : \langle X, G \rangle \mapsto \mathcal L'$ where $\mathcal L' \subset \mathcal L = \{\ell_1,\cdots \ell_{|\mathcal L|}\}$
+ Let $\varphi : \langle X, G \rangle \mapsto \mathcal L^*$ where $\mathcal L^* \subset \mathcal L = \{\ell_1,\cdots \ell_{|\mathcal L|}\}$
+\end{definition}
+
+\begin{definition}
+	Let $G\langle \mathcal L , \circ,e \rangle $ a abelian group and 
+	$X \in 
+		\{
+		\mathcal L
+		\cup
+		\sup \mathcal L 
+		\cup  
+		\inf \mathcal L
+		\}
+		$ 
+		such that $X = \ell_* \circ \ell_{*'} \circ \cdots \circ \ell_{*''}$ where each $\ell_* $ is unknow apriori and lives in image of $\varphi \mapsto \mathcal L^*$
+
+\end{definition}
+
+\begin{definition}
+	Let $
+	\mathcal M:\mathcal L_k 
+		\mapsto 
+		\{\mathcal L\} $
+	 a one-to-many map, mapping each element result of a comutation $k$ living or not in $\mathcal L$ to a family of possible(s) comutation(s) term(s) set.
+	 A thing like:
+	 	$$
+	 	\mathcal M:
+	 	(\ell_k \circ \ell_{k'} \circ \cdots \circ \ell_{*''}) \mapsto 
+	 	\Big\{
+	 	\{\ell_k ,\ell_{k'} , \cdots , \ell_{k''}\},\cdots
+	 	\Big\}
+	 	$$
+	 The structure of $\mathcal M$ can be imaginated as bi-dimensional matrix, but you cannot define a priori your size because it is $k$-iteration-dependent.
 \end{definition}
 
 
 
-\begin{definition}
-	Let $G\langle \mathcal L , \circ \rangle $ a abelian group and $X \in \sup \mathcal L $ such that $X = \ell^{'}_* \circ \cdots \circ \ell^{'}_{*'}$
-\end{definition}
 
+\begin{step}
+Determine $\mathcal M(\ell_i) \leftarrow \ell_i$ for $i=1..|\mathcal L|$
+\end{step}
 
+\begin{step}
+	Let $k$ a iteration block ; Pick $\ell_\alpha$ , $\ell_\beta$ sample pair elements from $\mathcal L$ 
+	
+	$$
+	\mathcal M(\ell_\alpha \circ \ell_\beta) 
+		\leftarrow 
+			\{ \ell_\alpha , \ell_\beta \} 
+		\iff
+		(k=0) 
+		\lor
+			(|\mathcal M| = |\mathcal L| )
+	$$
 
-\begin{definition}
+	
+\end{step}
+\begin{step}
+		A trivial step for each iteration $k$ before sample the pair $\{ \ell_\alpha , \ell_\beta \}$ is compute: 
+		$$
+		\texttt{if}
+		\Big(
+			(\ell_\alpha \circ \ell_\beta)^{-1} 
+			\circ X = e 
+		\Big) 
+		\texttt{then return }
+			X=  \{ \ell_\alpha , \ell_\beta \}	
+		$$
+\end{step}
 
-\end{definition}
+\begin{step}
+	Iff evaluation is diferent than $e$ :
+	 
+	A second step is check if the inverse exists in map $\mathcal M$ , computing: $$\mathcal L_\mathcal M \leftarrow 
+	\mathcal M
+	\Big(
+		(\ell_\alpha \circ \ell_\beta)^{-1} 
+		\circ X
+	\Big)$$
+	Before check
+	$$
+	\texttt{if}
+	\Big((\ell_\alpha \circ \ell_\beta\circ\mathcal L_\mathcal M)^{-1} \circ X = e 
+	\Big) \texttt{then return }X=  \{ \ell_\alpha , \ell_\beta \}	\cup \mathcal L_\mathcal M
+	$$	
+\end{step}
 
-
-We now state our main result.
-
-\begin{theorem}
-
-\end{theorem}
-
-
-
+\begin{step}
+	In this step $X_k^{-1}$ denote $(\ell_\alpha \circ \ell_\beta\circ\mathcal L_\mathcal M)^{-1}$
+	then
+		$$
+		\texttt{if}
+		\Big(
+			X_k^{-1} \circ X \neq e 
+			\land
+			\exists \,
+\mathcal M (\mathcal L_\mathcal M)			
+		\Big) 
+		\texttt{then push }
+		\{ \ell_\alpha , \ell_\beta \}
+		\cup
+		\mathcal L_\mathcal M 
+		\rightarrow
+		\mathcal M
+		\Big(
+			( \ell_\alpha \circ \ell_\beta )
+		\circ 
+			\mathcal L_\mathcal M 
+		\Big)
+		$$
+\end{step}
+\begin{step}
+	Compute next $k$
+\end{step}
 \section{Conclusion}
 
-
-
-\begin{conjecture}
-Let ${E_{\beta,y}} > \eta$ be arbitrary.  Then $\phi' \le \omega'$.
-\end{conjecture}
-
-
-Every student is aware that every pairwise bounded homomorphism is affine. In future work, we plan to address questions of countability as well as integrability. It has long been known that there exists an invertible simply non-trivial class equipped with a discretely one-to-one, integrable, algebraically connected monoid \cite{cite:32}. It is well known that $\| \theta \| \ne 1$. This reduces the results of \cite{cite:33} to a recent result of Johnson \cite{cite:34}. 
-
-\begin{conjecture}
-Let $| \hat{\mathfrak{{x}}} | \le 2$.  Then $\tilde{\mathfrak{{h}}}$ is quasi-additive and covariant.
-\end{conjecture}
-
-
-The goal of the present article is to classify almost everywhere bounded, Maxwell, combinatorially integral functors. This leaves open the question of surjectivity. Thus here, connectedness is trivially a concern. Recent interest in paths has centered on classifying subrings. It is essential to consider that $\bar{c}$ may be convex. In this context, the results of \cite{cite:7} are highly relevant. In \cite{cite:35}, the authors constructed functors.
-
-
+\cite{cite:30}
 
 
 \begin{footnotesize}
